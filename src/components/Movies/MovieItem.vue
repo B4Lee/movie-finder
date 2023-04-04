@@ -1,7 +1,7 @@
 <template>
     <div>
         <router-link to="/movie/11">
-            <img src="../assets/images/yorushika.jpg" 
+            <img src="../../assets/images/yorushika.jpg" 
             class="hover:opacity-75 transition easy-in-out duration-150" 
             alt=""/>
         </router-link>
