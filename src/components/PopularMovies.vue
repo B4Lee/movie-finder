@@ -13,6 +13,6 @@
 </template>
 
 <script setup>
-import MovieItem from "./MovieItem.vue"
+import MovieItem from "./Movies/MovieItem.vue"
 
 </script>
