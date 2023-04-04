@@ -1,15 +1,11 @@
-<script setup>
-
-import Home from './views/HomeView.vue'
-</script>
-
 <template>
   <header>
-    <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
-
     <div class="wrapper">
-      <Home/>
-
+      <div class="border-b border-grey-500 flex justify-between">
+        <NavBar />
+        <SearchBar />
+      </div>
+      <RouterView />
       <!-- <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
@@ -17,3 +13,9 @@ import Home from './views/HomeView.vue'
     </div>
   </header>
 </template>
+
+<script setup>
+import NavBar from './components/Header/NavBar.vue'
+import SearchBar from './components/Header/SearchBar.vue'
+
+</script>
