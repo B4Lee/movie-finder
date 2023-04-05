@@ -1,6 +1,6 @@
 <template>
     <div>
-        <router-link to="/movie/11">
+        <router-link :to="`/movie/${movie.id}`">
             <img 
             :src="posterPath" 
             class="hover:opacity-75 transition easy-in-out duration-150" 
