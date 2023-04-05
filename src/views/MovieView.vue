@@ -1,12 +1,20 @@
 <template>
     <div>
         <div class="container flex mt-20 border-b border-gray-600 pb-2 mx-auto lg:px-24">
-            <img src="../assets/images/yorushika.jpg" class="w-64" alt=""> 
+            <img :src="posterPath" class="w-64" alt=""> 
             <div class="ml-24">
-                <h1 class="text-4xl font-semibold">Yorushika</h1>
-                <span class="text-gray-500 text-sm">82% | 2023-04-04 , Genre, Genre</span>
+                <h1 class="text-4xl font-semibold">{{ this.movie.title }}</h1>
+                <span class="text-gray-500 text-sm">
+                    
+                    {{ this.movie.vote_average * 10}}% | {{  this.movie.release_date }} 
+                    <span :key="index" v-for="(item, index) in movie.genres" class="ml-1">
+                        {{ item.name }}
+                        <span v-if="movie.genres.length - 1 != index">,</span>
+                    </span>
+                </span>
+                
                 <p class="mt-5">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem ipsa impedit nihil illum ex repudiandae nulla et animi aperiam! Dolorum nulla dolor, saepe a provident facere dolore corrupti et commodi.
+                    {{ this.movie.overview }}
                 </p>
                 
                 <div class="mt-5 ">
@@ -36,13 +44,55 @@
             </div>
         </div>
         
-        <Cast />
-        <Image />
+        <Cast :casts="movie.credits.cast" />
+        <Images />
     </div>
 </template>
 
-<script setup>
+<script>
 import Cast from '../components/Movies/CastMovie.vue'
-import Image from '../components/Movies/ImageMovies.vue'
+import Images from '../components/Movies/ImageMovies.vue'
+
+export default {
+    components: {
+        Cast,
+        Images,
+    },
+    
+    computed: {
+        posterPath() {
+            return "https://image.tmdb.org/t/p/w500/" + this.movie.poster_path;
+        },
+    },
+    
+    data() {
+        return {
+            movie: {
+                credits: {
+                    crew: {},
+                },
+                images: {
+                    backdrops: {},
+                },
+            },
+            modelOpen: false,
+            isVideo: false,
+            mediaURL: "",
+        };
+    },
+    
+    mounted() {
+        this.fetchMovie(this.$route.params.id);
+    },
+    
+    methods: {
+        async fetchMovie(movieId) {
+            const response = await this.$http.get(
+            "/movie/" + movieId + "?append_to_response=credits,videos,images"
+            );
+            this.movie = response.data;
+        }
+    }
+}
 
 </script>
