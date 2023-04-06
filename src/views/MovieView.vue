@@ -20,33 +20,36 @@
                 <div class="mt-5 ">
                     <span class="mt-5 font-semibold">Featured Cast</span>
                     <div class="flex">
-                        <div class="flex flex-col mt-5 mr-5">
-                            <span>Iqbal ANggoro</span>
-                            <span class="text-gray-500">Writer</span>
-                        </div>
-                        <div class="flex flex-col mt-5">
-                            <span>Wisnu ANggoro</span>
-                            <span class="text-gray-500">Screenplay</span>
+                        <div 
+                        :key="index"
+                        v-for="(crew, index) in movie.credits.crew">
+                        <div v-if="index < 2" class="flex flex-col mt-5 mr-5">
+                            <span>{{crew.name}}</span>
+                            <span class="text-gray-500">{{crew.job}}</span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="mt-5">
-                    <a href="" class="rounded bg-yellow-500 px-5 py-3 inline-flex text-black">
-                        <img src="../assets/images/heart-white.png" alt="">
-                        <span class="">Play Trailer</span>
-                    </a>
-                    <a href="" class="rounded bg-yellow-500  ml-5 px-5 py-3 inline-flex text-black">
-                        <img src="../assets/images/heart-white.png" alt="">
-                        <span class="">Favourite</span>
-                    </a>
-                </div>
             </div>
+            
+            <div class="mt-5">
+                <a 
+                :href="youtubeVideo" 
+                target="blank"
+                class="rounded bg-yellow-500 px-5 py-3 inline-flex text-black">
+                <img src="../assets/images/heart-white.png" alt="">
+                <span class="">Play Trailer</span>
+            </a>
+            <a href="" class="rounded bg-yellow-500  ml-5 px-5 py-3 inline-flex text-black">
+                <img src="../assets/images/heart-white.png" alt="">
+                <span class="">Favourite</span>
+            </a>
         </div>
-        
-        <Cast :casts="movie.credits.cast" />
-        <Images />
     </div>
+</div>
+
+<Cast :casts="movie.credits.cast" />
+<Images :images="movie.images.backdrops" />
+</div>
 </template>
 
 <script>
@@ -63,6 +66,13 @@ export default {
         posterPath() {
             return "https://image.tmdb.org/t/p/w500/" + this.movie.poster_path;
         },
+        
+        youtubeVideo() {
+            if (!this.movie.videos) return;
+            return (
+            "https://www.youtube.com/watch?v=" + this.movie.videos.results[0].key
+            );
+        },
     },
     
     data() {
@@ -75,9 +85,6 @@ export default {
                     backdrops: {},
                 },
             },
-            modelOpen: false,
-            isVideo: false,
-            mediaURL: "",
         };
     },
     
