@@ -4,6 +4,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             <div :key="index" v-for="(image, index) in images" class="mr-2 mt-2">
                 <img 
+                @click="openImage(image)"
                 class="hover:opacity-75 transition easy-in-out duration-150" 
                 :src="movieImage(image)">
             </div>
@@ -26,7 +27,17 @@ export default {
             } else {
                 return "https://via.placeholder.com/300x450";
             }
-        }
-    }
+        },
+        openImage(image) {
+            let imageFullPath = "";
+            if (image.file_path) {
+                imageFullPath =
+                "https://image.tmdb.org/t/p/original/" + image.file_path;
+            } else {
+                imageFullPath = "https://via.placeholder.com/300x450";
+            }
+            this.$emit("on-image-click", imageFullPath);
+        },
+    },
 }
 </script>
