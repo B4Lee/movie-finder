@@ -33,7 +33,7 @@
             
             <div class="mt-5">
                 <a 
-                :href="youtubeVideo" 
+                @click.prevent="openYoutubeModal"
                 target="blank"
                 class="rounded bg-yellow-500 px-5 py-3 inline-flex text-black">
                 <img src="../assets/images/heart-white.png" alt="">
@@ -48,30 +48,31 @@
 </div>
 
 <Cast :casts="movie.credits.cast" />
-<Images :images="movie.images.backdrops" />
+<Images :images="movie.images.backdrops" v-on:on-image-click="showImageModal" />
+<MediaModel 
+:isVideo="this.isVideo"
+:value="modalOpen" 
+:mediaURL="mediaURL" 
+@close="modalOpen = false"/>
+
 </div>
 </template>
 
 <script>
 import Cast from '../components/Movies/CastMovie.vue'
 import Images from '../components/Movies/ImageMovies.vue'
+import MediaModel from '../components/MediaModel.vue'
 
 export default {
     components: {
         Cast,
         Images,
+        MediaModel
     },
     
     computed: {
         posterPath() {
             return "https://image.tmdb.org/t/p/w500/" + this.movie.poster_path;
-        },
-        
-        youtubeVideo() {
-            if (!this.movie.videos) return;
-            return (
-            "https://www.youtube.com/watch?v=" + this.movie.videos.results[0].key
-            );
         },
     },
     
@@ -85,6 +86,9 @@ export default {
                     backdrops: {},
                 },
             },
+            modalOpen: false,
+            isVideo: false,
+            mediaURL: ""
         };
     },
     
@@ -98,6 +102,26 @@ export default {
             "/movie/" + movieId + "?append_to_response=credits,videos,images"
             );
             this.movie = response.data;
+        },
+        youtubeVideo() {
+            if (!this.movie.videos) return;
+            return (
+            "https://www.youtube.com/embed/" + this.movie.videos.results[0].key
+            );
+        },
+        openYoutubeModal() {
+            this.mediaURL = this.youtubeVideo()
+            this.isVideo = true;
+            this.modalOpen = true;
+        },
+        openImageModel() {
+            this.isVideo = false;
+            this.modalOpen = true;
+        },
+        showImageModal(imageFullPath) {
+            this.mediaURL = imageFullPath;
+            this.isVideo = false
+            this.modalOpen = true;
         }
     }
 }
