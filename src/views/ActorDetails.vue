@@ -160,9 +160,7 @@ export default {
             "https://api.themoviedb.org/3/person/" + actorId + "/combined_credits"
             );
             this.castMovies = response.data.cast;
-            this.knownFor = response.data.cast.slice(
-            Math.max(response.data.cast.length - 5, 1)
-            );
+            this.knownFor = response.data.cast.filter((x) => x.media_type == "movie").slice(1, 6);
         },
         
         movieImage(movie) {
