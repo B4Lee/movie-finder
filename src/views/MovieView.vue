@@ -92,8 +92,13 @@ export default {
         };
     },
     
-    mounted() {
-        this.fetchMovie(this.$route.params.id);
+    watch: {
+        "$route.params.id": {
+            handler() {
+                this.fetchMovie(this.$route.params.id);
+            },
+            immediate: true,
+        }
     },
     
     methods: {

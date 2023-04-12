@@ -24,31 +24,35 @@
     <div class="absolute mt-12 rounded bg-gray-600 w-60 z-50">
         <ul class="mt-3" v-if="showSearchResult">
             <li :key="index" v-for="(movie, index) in searchResult">
-                <a :href="'/movie/' + movie.id" 
-                class="flex items-center border-b border-gray-500 p-1"
-                @click="showSearchResult = false"
-                >
-                <!-- <router-link
-                    :to="`/movie/${movie.id}`"
-                    @click.native="showSearchResult = false"
+                <!-- <a :href="'/movie/' + movie.id" 
                     class="flex items-center border-b border-gray-500 p-1"
-                    ></router-link> -->
+                    @click="showSearchResult = false"
+                    ></a> -->
+                    <router-link
+                    :to="`/movie/${movie.id}`"
+                    @click="showSearchResult = false"
+                    class="flex items-center border-b border-gray-500 p-1"
+                    >
                     <img :src="posterPath(movie.poster_path)" alt="" class="w-10" />
                     <span class="ml-3">{{ movie.title }}</span>
-                </a>
+                </router-link>
             </li>
         </ul>
         <ul class="px-3" v-if="searchResult.length == 0 && showSearchResult">
             <li>No result found for "{{ searchTerm }}"</li>
         </ul>
     </div>
-    
-    <img src="@/assets/images/avatar.jpg" alt="" class="h-10 rounded-full" />
+    <DropdownMenu />
 </div>
 </template>
 
 <script>
+import DropdownMenu from "./DropdownMenu.vue"
+
 export default {
+    components: {
+        DropdownMenu
+    },
     data() {
         return {
             searchResult: [],
@@ -117,5 +121,3 @@ export default {
     },
 };
 </script>
-
-<style></style>
