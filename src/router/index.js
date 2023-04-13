@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import Movie from '../views/MovieView.vue'
 import Actors from '../views/ActorsView.vue'
 import ActorsDetail from '../views/ActorDetails.vue'
+import ProfileView from '../views/ProfileView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,11 @@ const router = createRouter({
       path: '/actor/:id',
       name: 'actor',
       component: ActorsDetail
+    },
+    {
+      path: '/profile/',
+      name: 'profile',
+      component: ProfileView
     },
 
     // {
