@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="wrapper">
-      <div class="border-b border-grey-500 flex justify-between">
+      <div class="border-b border-gray-700 flex justify-between pb-4 px-8">
         <NavBar />
         <SearchBar />
       </div>
