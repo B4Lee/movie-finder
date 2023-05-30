@@ -33,14 +33,15 @@
             
             <div class="mt-5">
                 <a 
+                href=""
                 @click.prevent="openYoutubeModal"
                 target="blank"
                 class="rounded bg-yellow-500 px-5 py-3 inline-flex text-black">
-                <img src="../assets/images/heart-white.png" alt="">
+                ▶
                 <span class="">Play Trailer</span>
             </a>
             <a href="" class="rounded bg-yellow-500  ml-5 px-5 py-3 inline-flex text-black">
-                <img src="../assets/images/heart-white.png" alt="">
+                <!-- <img src="../assets/images/heart-white.png" alt=""> -->
                 <span class="">Favourite</span>
             </a>
         </div>
