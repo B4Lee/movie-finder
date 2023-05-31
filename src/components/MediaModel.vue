@@ -18,7 +18,7 @@
         <div class="modal-body px-8 py-8">
             <div
             class="responsive-container overflow-hidden relative"
-            :style="isVideo ? { 'padding-top': '56.25%' } : {}"
+            :style="isVideo ? { 'padding-top': '50%' } : {}"
             >
             <img :src="mediaURL" v-if="!isVideo" />
             <iframe
