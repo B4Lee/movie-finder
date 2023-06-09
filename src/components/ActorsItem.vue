@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mx-auto">
     <router-link :to="`/actor/${this.actor.id}`">
       <img :src="profileImage" alt="" />
       
