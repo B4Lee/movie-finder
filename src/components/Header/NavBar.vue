@@ -10,13 +10,13 @@
                 </router-link>
             </li>
             <li>
-                <router-link to="/actors">
-                    Actors
+                <router-link to="/tv">
+                    Tv Shows
                 </router-link>
             </li>
             <li>
-                <router-link to="/profile">
-                    Profile
+                <router-link to="/actors">
+                    Actors
                 </router-link>
             </li>
         </ul>
