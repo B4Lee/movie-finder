@@ -6,11 +6,10 @@
             class="hover:opacity-75 transition easy-in-out duration-150" 
             alt=""/>
         </router-link>
-        
-        <h3>{{movie.title}}</h3>
-        <div class="flex">
+        <h3 class="mt-2">{{movie.title}}</h3>
+        <!-- <div class="flex">
             <span class="ml-5"> {{movie.vote_average * 10}}% | {{movie.release_date}}</span>
-        </div>
+        </div> -->
         <span class="text-sm text-gray-500">
             <span :key="genre" v-for="(genre, index) in movie.genre_ids">
                 {{ genreTypeName(genre, index) }}
