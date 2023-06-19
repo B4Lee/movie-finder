@@ -3,13 +3,15 @@
         <h2 class="text-4xl font-semibold mb-5">
             Cast
         </h2>
-        
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            <div class="mr-2" :key="cast.id" v-for="cast in casts">
+            <div class="mx-auto gap-2 p-2 py-2" :key="cast.id" v-for="cast in casts">
+            <router-link :to="`/actor/${cast.id}`">
                 <img 
-                class="hover:opacity-75 transition easy-in-out duration-150" 
+                class="border-gray-700 border-4 hover:opacity-75 transition easy-in-out duration-150" 
                 :src="castProfileImage(cast)" alt="">
-                <span class="text-gray-300">{{ cast.name }}</span>
+                <span class="text-white">{{ cast.name }}</span><br>
+                <span class="text-gray-400 ">{{ cast.character }}</span>
+            </router-link>
             </div>
         </div>
     </div>
