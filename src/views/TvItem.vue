@@ -1,13 +1,13 @@
 <template>
     <div>
-        <!-- <router-link :to="`/tv/${tv.id}`"> -->
+        <router-link :to="`/tv/${tv.id}`">
             <img 
             :src="posterPath" 
             class="border-8 border-gray-800 hover:opacity-75 transition easy-in-out duration-150" 
             width="400"
             height="600"
             alt=""/>
-        <!-- </router-link> -->
+        </router-link>
         <h3 class="mt-2">{{tv.name}}</h3>
         <span class="text-sm text-gray-400">
             <span :key="genre" v-for="(genre, index) in tv.genre_ids">
