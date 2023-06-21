@@ -29,12 +29,13 @@
                     @click="showSearchResult = false"
                     ></a> -->
                     <router-link
-                    :to="`/movie/${movie.id}`"
+                    :to="`/${movie.media_type}/${movie.id}`"
                     @click="showSearchResult = false"
                     class="flex items-center border-b border-gray-500 p-1"
                     >
                     <img :src="posterPath(movie.poster_path)" alt="" class="w-10" />
                     <span class="ml-3">{{ movie.title }}</span>
+                    <span class="">{{ movie.name }}</span>
                 </router-link>
             </li>
         </ul>
@@ -77,9 +78,10 @@ export default {
         
         async fetchSearch(term) {
             try {
-                const response = await this.$http.get("/search/movie?query=" + term);
+                const response = await this.$http.get("/search/multi?query=" + term);
                 this.searchResult = response.data.results;
                 this.showSearchResult = response.data.results ? true : false;
+                // console.log(this.searchResult);
             } catch (error) {
                 console.log(error);
             }
