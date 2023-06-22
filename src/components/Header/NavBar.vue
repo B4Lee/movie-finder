@@ -6,17 +6,17 @@
         <ul class="flex pt-4 space-x-4 ml-4">
             <li>
                 <router-link to="/">
-                    Movies
+                    🎥 Movies
                 </router-link>
             </li>
             <li>
                 <router-link to="/tv">
-                    Tv Shows
+                    📺 Tv Shows
                 </router-link>
             </li>
             <li>
                 <router-link to="/actors">
-                    Actors
+                    🎭 Actors
                 </router-link>
             </li>
         </ul>
