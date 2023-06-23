@@ -46,7 +46,7 @@ export default {
             );
             
             this.upcomingMovies = response.data.results;
-            console.log(this.upcomingMovies);
+            // console.log(this.upcomingMovies);
         },
     },
 };
