@@ -1,7 +1,16 @@
 <template>
     <div>
+        <!-- <div class="mx-auto">
+            <img :src="backdropPath" class="w-full h-[250px] bg-cover bg-center bg-no-repeat mb-8 md:h-[500px]" alt=""> 
+           <div class="flex-1 mx-auto z-20">
+                <h1 class="text-4xl font-semibold">{{ this.tv.name }}</h1>
+                <p class="mt-5">
+                    {{ this.tv.overview }}
+                </p>
+            </div>
+        </div> -->
         <div class="container flex mt-10 border-b border-gray-600 pb-2 mx-auto lg:px-24">
-            <img :src="posterPath" class="w-64" alt=""> 
+            <img :src="posterPath" class="w-80" alt=""> 
             <div class="ml-24">
                 <h1 class="text-4xl font-semibold">{{ this.tv.name }}</h1>
                 <span :key="index" v-for="(item, index) in tv.genres" class="text-gray-500 text-sm mb-10">
@@ -85,6 +94,10 @@ export default {
         posterPath() {
             return "https://image.tmdb.org/t/p/w500/" + this.tv.poster_path;
         },
+        backdropPath() {
+            return "https://image.tmdb.org/t/p/original/" + this.tv.backdrop_path;
+            
+        },
     },
     
     data() {
@@ -118,6 +131,7 @@ export default {
             "/tv/" + tvId + "?append_to_response=credits,videos,images"
             );
             this.tv = response.data;
+            console.log(this.tv)
         },
         youtubeVideo() {
             if (!this.tv.videos) return;
